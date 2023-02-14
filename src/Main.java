@@ -52,7 +52,7 @@ public class Main {
         // loop gameplay
         do {
 
-            System.out.println("Rock, paper, scissors!\n" +
+            System.out.println("\uD83E\uDEA8\uD83D\uDCDC✂  Rock, paper, scissors!  \uD83E\uDEA8\uD83D\uDCDC✂\n" +
                     "Player A, it's your move [Enter 'R', 'P', or 'S']:");
 
             // player A input
@@ -123,17 +123,18 @@ public class Main {
             if (playerA.equalsIgnoreCase(playerB)) {
                 System.out.println("Tie");
 
+
                 // all other cases:
             } else if (playerA.equalsIgnoreCase("R")) {
                 // player A is rock
 
                 if (playerB.equalsIgnoreCase("P")) {
                     // player B is paper
-                    System.out.println("Player B wins!");
+                    System.out.println("Paper covers Rock— Player B wins! \uD83C\uDF89");
 
                 } else {
                     // player B is scissors
-                    System.out.println("Player A wins!");
+                    System.out.println("Rock breaks Scissors— Player A wins! \uD83C\uDF89");
                 }
 
             } else if (playerA.equalsIgnoreCase("P")) {
@@ -141,11 +142,11 @@ public class Main {
 
                 if (playerB.equalsIgnoreCase("R")) {
                     // player B is rock
-                    System.out.println("Player A wins!");
+                    System.out.println("Paper covers Rock— Player A wins! \uD83C\uDF89");
 
                 } else {
                     // player B is scissors
-                    System.out.println("Player B wins!");
+                    System.out.println("Scissors cuts Paper— Player B wins! \uD83C\uDF89");
                 }
 
             } else {
@@ -153,11 +154,11 @@ public class Main {
 
                 if (playerB.equalsIgnoreCase("R")){
                     // player B is rock
-                    System.out.println("Player B wins!");
+                    System.out.println("Rock breaks Scissors— Player B wins! \uD83C\uDF89");
 
                 } else {
                     // player B is paper
-                    System.out.println("Player A wins!");
+                    System.out.println("Scissors cuts Paper— Player A wins! \uD83C\uDF89");
                 }
             }
             // end of winner check
