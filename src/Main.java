@@ -3,42 +3,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        /*
-        Get a move choice from playerA which must be R, P, S or r, p, s
-        Loop until you get a valid move
-        Get a move choice from playerB in the same manner
-
-        Display the results using the accepted phrases from the game
-        Rock breaks Scissors,
-        Paper covers Rock,
-        Scissors cuts Paper
-
-        and indicate the winner (Player A wins) or
-        Rock vs Rock it’s a Tie!  Etc…
-
-        Prompt the user to play again [Y/N]
-        Continue or terminate based on the user’s choice.
-
-
-        To assist in grading the work efficiently, I will ask you to provide
-        screen capture shots of your program runs to show that you completed the assigned work.
-        Provide the following screen shots:
-
-        INSERT THESE HERE IN THIS DOCUMENT:
-        Show the looping when the user fails to enter a valid move.
-        Show several completed games and the prompt to play again.
-
-        Note that you may be able to show all of this with one screen shot.
-        Just make sure you establish that you correctly coded the program and tested it.
-         */
 
         // input variables
         String playerA;
         String playerB;
 
         // variables for input checks
-        boolean lengthAValid = false;
-        boolean lengthBValid = false;
+        boolean validA;
+        boolean validB;
 
         // loop ender
         boolean gameOver = false;
@@ -52,8 +24,18 @@ public class Main {
         // loop gameplay
         do {
 
-            System.out.println("\uD83E\uDEA8\uD83D\uDCDC✂  Rock, paper, scissors!  \uD83E\uDEA8\uD83D\uDCDC✂\n" +
+            // reset input variables
+            playerA = "reset";
+            playerB = "reset";
+            validA = false;
+            validB = false;
+
+
+            // print title
+            System.out.println("\uD83E\uDEA8\uD83D\uDCDC✂  Rock, paper, scissors!  \uD83E\uDEA8\uD83D\uDCDC✂\n\n" +
                     "Player A, it's your move [Enter 'R', 'P', or 'S']:");
+
+
 
             // player A input
 
@@ -70,7 +52,7 @@ public class Main {
                             playerA.equalsIgnoreCase("S")) {
 
                         // ends loop
-                        lengthAValid = true;
+                        validA = true;
 
                     } else {
                         // if they put something weird, make them try again
@@ -83,10 +65,12 @@ public class Main {
                     System.out.println("Please enter only the first letter of your move (R/P/S):");
                 }
 
-            } while (!lengthAValid); // end of player A input
+            } while (!validA); // end of player A input
 
 
             // player B input
+
+            System.out.println("Player B, it's your move [Enter 'R', 'P', or 'S']:");
 
             // loops over input until they get it right
             do {
@@ -101,7 +85,7 @@ public class Main {
                             playerB.equalsIgnoreCase("S")) {
 
                         // ends loop
-                        lengthBValid = true;
+                        validB = true;
 
                     } else {
                         // if they put something weird, make them try again
@@ -114,54 +98,99 @@ public class Main {
                     System.out.println("Please enter only the first letter of your move (R/P/S):");
                 }
 
-            } while (!lengthBValid); // end of player B input
+            } while (!validB); // end of player B input
+
 
 
             // finally compare them
 
-            // first check if they tied
-            if (playerA.equalsIgnoreCase(playerB)) {
-                System.out.println("Tie");
-
-
-                // all other cases:
-            } else if (playerA.equalsIgnoreCase("R")) {
+            if (playerA.equalsIgnoreCase("R")) {
                 // player A is rock
 
-                if (playerB.equalsIgnoreCase("P")) {
+                System.out.print("\uD83E\uDEA8 v. "); // prints rock emoji for style
+
+
+                if (playerB.equalsIgnoreCase("R")) {
+                    // player B is rock
+                    System.out.println("\uD83E\uDEA8\n" +
+                            "Tie");
+
+                } else if (playerB.equalsIgnoreCase("P")) {
                     // player B is paper
-                    System.out.println("Paper covers Rock— Player B wins! \uD83C\uDF89");
+                    System.out.println("\uD83D\uDCDC\n" +
+                            "Paper covers Rock— Player B wins! \uD83C\uDF89");
+                    scoreB ++; // +1 to player B score
 
                 } else {
                     // player B is scissors
-                    System.out.println("Rock breaks Scissors— Player A wins! \uD83C\uDF89");
+                    System.out.println("✂\n" +
+                            "Rock breaks Scissors— Player A wins! \uD83C\uDF89");
+                    scoreA ++; // +1 to player A score
                 }
+
 
             } else if (playerA.equalsIgnoreCase("P")) {
                 // player A is paper
 
+                System.out.print("\uD83D\uDCDC v. "); // prints paper emoji for style
+
+
                 if (playerB.equalsIgnoreCase("R")) {
                     // player B is rock
-                    System.out.println("Paper covers Rock— Player A wins! \uD83C\uDF89");
+                    System.out.println("\uD83E\uDEA8\n" +
+                            "Paper covers Rock— Player A wins! \uD83C\uDF89");
+                    scoreA ++; // +1 to player A score
+
+                } else if (playerB.equalsIgnoreCase("P")) {
+                    // player B is paper
+                    System.out.println("\uD83D\uDCDC\n" +
+                            "Tie");
 
                 } else {
                     // player B is scissors
-                    System.out.println("Scissors cuts Paper— Player B wins! \uD83C\uDF89");
+                    System.out.println("✂\n" +
+                            "Scissors cuts Paper— Player B wins! \uD83C\uDF89");
+                    scoreB ++; // +1 to player B score
+
                 }
+
 
             } else {
                 // player A is scissors
 
+                System.out.print("✂ v. ");
+
+
                 if (playerB.equalsIgnoreCase("R")){
                     // player B is rock
-                    System.out.println("Rock breaks Scissors— Player B wins! \uD83C\uDF89");
+                    System.out.println("\uD83E\uDEA8\n" +
+                            "Rock breaks Scissors— Player B wins! \uD83C\uDF89");
+                    scoreB ++; // +1 to player B score
+
+                } else if (playerB.equalsIgnoreCase("P")){
+                    // player B is paper
+                    System.out.println("\uD83D\uDCDC\n" +
+                            "Scissors cuts Paper— Player A wins! \uD83C\uDF89");
+                    scoreA ++; // +1 to player A score
 
                 } else {
-                    // player B is paper
-                    System.out.println("Scissors cuts Paper— Player A wins! \uD83C\uDF89");
+                    // player B is scissors
+                    System.out.println("✂\n" +
+                            "Tie");
+
                 }
             }
             // end of winner check
+
+
+            // super long leaderboard output
+            // but doesn't print it if neither of them has any points
+            if (!(scoreA == 0 && scoreB == 0)) {
+                System.out.println("\n▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄\n  SCOREBOARD\n  " +
+                        "Player A: " + scoreA + "\n  " +
+                        "Player B: " + scoreB + "\n" +
+                        "▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄\n\n");
+            }
 
 
             // play again?
@@ -173,9 +202,12 @@ public class Main {
 
 
         } while (!gameOver);
+        // end game loop
 
 
-        // end
-        // display score?
+
+        // terminate
+        System.out.println("See you next time!");
+        System.exit(0);
     }
 }
